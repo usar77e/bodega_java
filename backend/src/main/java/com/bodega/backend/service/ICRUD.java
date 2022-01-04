@@ -1,4 +1,4 @@
-package com.bodega.backend.service.impl;
+package com.bodega.backend.service;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.bodega.backend.service.impl;
+package com.bodega.backend.service;
 
 import com.bodega.backend.model.Usuarios;
 
