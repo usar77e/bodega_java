@@ -2,6 +2,7 @@ package com.bodega.backend.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "detalles")
@@ -12,6 +13,7 @@ public class Detalles {
     private Integer IdDetalle;
 
     @NotNull
+    @Positive
     @Column(name = "cantidad")
     private int cantidad;
 

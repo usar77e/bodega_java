@@ -3,6 +3,7 @@ package com.bodega.backend.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,7 @@ public class Productos {
     private String modelo;
 
     @NotNull
+    @Positive
     @Column(name = "cantidad")
     private Integer cantidad;
 

@@ -1,6 +1,7 @@
 package com.bodega.backend.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
 
 @Entity
@@ -12,6 +13,7 @@ public class Movimientos {
     private Integer idMovimiento;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @PastOrPresent
     @Column(name = "fecha_ingreso", updatable = false, nullable = false)
     private Date fechaIngreso;
 
