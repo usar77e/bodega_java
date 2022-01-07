@@ -1,27 +1,34 @@
 package com.bodega.backend.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+@Schema(description = "Detalles de operacion de la tabla movimientos")
 @Entity
 @Table(name = "detalles")
 public class Detalles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Llave primaria de detalles de movimientos, auto-incrementable Identity")
     @Column(name = "id_detalle")
     private Integer IdDetalle;
 
     @NotNull
     @Positive
+    @Schema(description = "campo registra cantidad de productos que ingresan o salen")
     @Column(name = "cantidad")
     private int cantidad;
 
     @ManyToOne
+    @Schema(description = "llave foranea a movimientos")
     @JoinColumn(name = "id_movimiento", nullable = false, foreignKey = @ForeignKey(name = "FK_detalle_movimiento"))
     private Movimientos movimientos;
 
     @ManyToOne
+    @Schema(description = "llave foranea a productos")
     @JoinColumn(name = "id_producto", nullable = false, foreignKey = @ForeignKey(name = "FK_detalle_producto"))
     private Productos productos;
 

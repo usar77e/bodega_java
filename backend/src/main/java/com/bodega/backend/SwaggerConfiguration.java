@@ -1,5 +1,5 @@
 package com.bodega.backend;
-
+/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.service.ApiInfo;
@@ -12,10 +12,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 
 @Configuration
-@EnableSwagger2
+@EnableSwagger2*/
 public class SwaggerConfiguration {
 
-    public static final Contact DEFAULT_CONTACT = new Contact("Erick", "http://localhost:591",
+    /*public static final Contact DEFAULT_CONTACT = new Contact("Erick", "http://localhost:591",
             "agenda212013@gmail.com");
 
     public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Mediapp Api Documentation",
@@ -25,5 +25,5 @@ public class SwaggerConfiguration {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO);
-    }
+    }*/
 }
