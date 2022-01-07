@@ -1,5 +1,6 @@
 package com.bodega.backend.service.impl;
 
+import com.bodega.backend.dto.TipoProductoDTO;
 import com.bodega.backend.exception.ModelNoFoundException;
 import com.bodega.backend.model.Productos;
 import com.bodega.backend.repository.ProductosRepository;
@@ -7,6 +8,7 @@ import com.bodega.backend.service.ProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +51,19 @@ public class ProductosServiceImpl implements ProductosService {
     public boolean delete(Integer id) {
         productosRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<TipoProductoDTO> findAllDto() {
+        List<TipoProductoDTO> dtos = new ArrayList<>();
+        List<Productos> productos = productosRepository.findAll();
+        productos.forEach(producto ->{
+             TipoProductoDTO tipoProductoDTO = new TipoProductoDTO();
+             tipoProductoDTO.setIdProducto(producto.getIdProducto());
+             tipoProductoDTO.setNombre(producto.getNombre());
+             tipoProductoDTO.setTipoProductos(producto.getTipoProductos());
+             dtos.add(tipoProductoDTO);
+        });
+        return dtos;
     }
 }

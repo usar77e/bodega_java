@@ -1,5 +1,6 @@
 package com.bodega.backend.controller;
 
+import com.bodega.backend.dto.TipoProductoDTO;
 import com.bodega.backend.model.Productos;
 import com.bodega.backend.service.ProductosService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,5 +49,10 @@ public class ProductosController {
     @PostMapping
     public @ResponseBody Productos save(@RequestBody Productos productos){
         return productosService.save(productos);
+    }
+
+    @GetMapping("/tipo-producto")
+    public List<TipoProductoDTO> findAllDto(){
+        return productosService.findAllDto();
     }
 }
