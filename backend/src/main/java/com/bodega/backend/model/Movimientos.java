@@ -1,25 +1,34 @@
 package com.bodega.backend.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
 
+@Schema(description = "Listado operaciones de entrada y salida de productos a la bodega")
 @Entity
 @Table(name = "movimientos")
 public class Movimientos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Llave primaria de movimientos, auto-incrementable Identity")
     @Column(name = "id_movimiento")
     private Integer idMovimiento;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Schema(description = "fecha de ingreso de la operacion, fecha actual o futura, no acepta nulos ni se puede modificar")
+    @PastOrPresent
     @Column(name = "fecha_ingreso", updatable = false, nullable = false)
     private Date fechaIngreso;
 
     @ManyToOne
+    @Schema(description = "llave foranea a usuarios")
     @JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "FK_movimiento_usuario"))
     private Usuarios usuarios;
 
     @ManyToOne
+    @Schema(description = "llave foranea a tipos")
     @JoinColumn(name = "id_tipo", nullable = false, foreignKey = @ForeignKey(name = "FK_movimiento_tipo"))
     private Tipos tipos;
 

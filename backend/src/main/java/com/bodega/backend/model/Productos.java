@@ -1,27 +1,34 @@
 package com.bodega.backend.model;
 
 import com.sun.istack.NotNull;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
+@Schema(description = "Listado de productos")
 @Entity
 @Table(name = "productos")
 public class Productos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Llave primaria de productos, auto-incrementable Identity")
     @Column(name = "id_producto")
     private Integer idProducto;
 
     @NotNull
+    @Schema(description = "Nombre del producto, maximo 70 caracteres, no acepta nulos")
     @Column(unique = true, name = "nombre", length = 70)
     private String nombre;
 
     @NotNull
+    @Schema(description = "Modelo del producto, maximo 70 caracteres, no acepta nulos")
     @Column(unique = true, name = "modelo", length = 70)
     private String modelo;
 
     @NotNull
+    @Positive
     @Column(name = "cantidad")
     private Integer cantidad;
 
