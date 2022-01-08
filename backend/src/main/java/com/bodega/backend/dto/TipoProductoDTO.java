@@ -1,5 +1,7 @@
 package com.bodega.backend.dto;
 
+import com.bodega.backend.model.MarcaProducto;
+import com.bodega.backend.model.Marcas;
 import com.bodega.backend.model.TipoProductos;
 
 import java.io.Serializable;
@@ -9,6 +11,28 @@ public class TipoProductoDTO implements Serializable {
     private String nombre;
     private Integer cantidad;
     private TipoProductos tipoProductos;
+    private MarcaProducto marcaProducto;
+    private Marcas marcas;
+
+    public TipoProductoDTO() {
+    }
+
+    public TipoProductoDTO(Integer idProducto, String nombre, Integer cantidad, TipoProductos tipoProductos, MarcaProducto marcaProducto, Marcas marcas) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.tipoProductos = tipoProductos;
+        this.marcaProducto = marcaProducto;
+        this.marcas = marcas;
+    }
+
+    public MarcaProducto getMarcaProducto() {
+        return marcaProducto;
+    }
+
+    public void setMarcaProducto(MarcaProducto marcaProducto) {
+        this.marcaProducto = marcaProducto;
+    }
 
     public Integer getIdProducto() {
         return idProducto;
@@ -40,5 +64,13 @@ public class TipoProductoDTO implements Serializable {
 
     public void setTipoProductos(TipoProductos tipoProductos) {
         this.tipoProductos = tipoProductos;
+    }
+
+    public Marcas getMarcas() {
+        return marcas;
+    }
+
+    public void setMarcas(Marcas marcas) {
+        this.marcas = marcas;
     }
 }

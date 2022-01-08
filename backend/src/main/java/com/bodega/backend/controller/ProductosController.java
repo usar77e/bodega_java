@@ -55,4 +55,9 @@ public class ProductosController {
     public List<TipoProductoDTO> findAllDto(){
         return productosService.findAllDto();
     }
+
+    @GetMapping("/marca-producto")
+    public List<Object[]> listarMarcasProductos() {
+        return productosService.listarMarcasProductos();
+    }
 }

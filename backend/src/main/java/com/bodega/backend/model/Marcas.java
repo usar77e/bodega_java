@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Schema(description = "Listado de marcas de productos")
 @Entity
@@ -20,12 +21,16 @@ public class Marcas {
     @Column(unique = true, name = "nombre", length = 70)
     private String nombre;
 
+    @OneToMany(mappedBy = "marcas")
+    private List<MarcaProducto> marcaProductos;
+
     public Marcas() {
     }
 
-    public Marcas(Integer idMarca, String nombre) {
+    public Marcas(Integer idMarca, String nombre, List<MarcaProducto> marcaProductos) {
         this.idMarca = idMarca;
         this.nombre = nombre;
+        this.marcaProductos = marcaProductos;
     }
 
     public Integer getIdMarca() {
@@ -42,5 +47,13 @@ public class Marcas {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<MarcaProducto> getMarcaProductos() {
+        return marcaProductos;
+    }
+
+    public void setMarcaProductos(List<MarcaProducto> marcaProductos) {
+        this.marcaProductos = marcaProductos;
     }
 }

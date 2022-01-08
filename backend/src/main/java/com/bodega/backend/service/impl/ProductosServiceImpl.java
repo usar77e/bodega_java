@@ -1,5 +1,6 @@
 package com.bodega.backend.service.impl;
 
+import com.bodega.backend.dto.MarcaProductoDto;
 import com.bodega.backend.dto.TipoProductoDTO;
 import com.bodega.backend.exception.ModelNoFoundException;
 import com.bodega.backend.model.Productos;
@@ -65,5 +66,15 @@ public class ProductosServiceImpl implements ProductosService {
              dtos.add(tipoProductoDTO);
         });
         return dtos;
+    }
+
+    @Override
+    public List<Object[]> listarMarcasProductos() {
+        return productosRepository.listarMarcasProductos();
+    }
+
+    @Override
+    public Productos listarMarcaProducto(MarcaProductoDto dto) {
+        return null;
     }
 }
