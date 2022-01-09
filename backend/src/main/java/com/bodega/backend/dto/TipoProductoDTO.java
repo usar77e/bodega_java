@@ -3,10 +3,11 @@ package com.bodega.backend.dto;
 import com.bodega.backend.model.MarcaProducto;
 import com.bodega.backend.model.Marcas;
 import com.bodega.backend.model.TipoProductos;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 
-public class TipoProductoDTO implements Serializable {
+public class TipoProductoDTO extends RepresentationModel implements Serializable {
     private Integer idProducto;
     private String nombre;
     private Integer cantidad;

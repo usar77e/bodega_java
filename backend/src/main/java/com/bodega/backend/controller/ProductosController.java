@@ -7,10 +7,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.hateoas.RepresentationModel.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -53,7 +56,21 @@ public class ProductosController {
 
     @GetMapping("/tipo-producto")
     public List<TipoProductoDTO> findAllDto(){
-        return productosService.findAllDto();
+        List<TipoProductoDTO> dtos = new ArrayList<>();
+        List<Productos> productos = productosService.findAll();
+        productos.forEach(producto -> {
+            TipoProductoDTO tipoProductoDTO = new TipoProductoDTO();
+            tipoProductoDTO.setTipoProductos(producto.getTipoProductos());
+            tipoProductoDTO.setNombre(producto.getNombre());
+
+            //HATEOAS
+            //localhost:591/tipo_productos/{id}
+            WebMvcLinkBuilder linkTo1 = WebMvcLinkBuilder.linkTo(
+                    WebMvcLinkBuilder.methodOn(TipoProductosController.class).findById(producto.getTipoProductos().getIdTproducto()));
+            tipoProductoDTO.add(linkTo1.withSelfRel());
+            dtos.add(tipoProductoDTO);
+        });
+        return dtos;
     }
 
     @GetMapping("/marca-producto")
