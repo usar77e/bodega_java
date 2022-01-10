@@ -1,5 +1,6 @@
 package com.bodega.backend.service.impl;
 
+import com.bodega.backend.dto.MovimientoDetallesDTO;
 import com.bodega.backend.exception.ModelNoFoundException;
 import com.bodega.backend.model.Movimientos;
 import com.bodega.backend.repository.MovimientosRepository;
@@ -7,6 +8,7 @@ import com.bodega.backend.service.MovimientosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +51,19 @@ public class MovimientosServiceImpl implements MovimientosService {
     public boolean delete(Integer id) {
         movimientosRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<MovimientoDetallesDTO> findAllMovDTO() {
+        List<MovimientoDetallesDTO> dtos = new ArrayList<>();
+        List<Movimientos> movimientos = movimientosRepository.findAll();
+        movimientos.forEach(movimiento -> {
+            MovimientoDetallesDTO movimientoDetallesDTO = new MovimientoDetallesDTO();
+            movimientoDetallesDTO.setIdMovimiento(movimiento.getIdMovimiento());
+            movimientoDetallesDTO.setUsuarios(movimiento.getUsuarios());
+            movimientoDetallesDTO.setTipos(movimiento.getTipos());
+            dtos.add(movimientoDetallesDTO);
+        });
+        return dtos;
     }
 }

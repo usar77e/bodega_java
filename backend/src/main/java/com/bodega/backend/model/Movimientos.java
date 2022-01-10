@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.persistence.*;
 import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
+import java.util.List;
 
 @Schema(description = "Listado operaciones de entrada y salida de productos a la bodega")
 @Entity
@@ -32,14 +33,18 @@ public class Movimientos {
     @JoinColumn(name = "id_tipo", nullable = false, foreignKey = @ForeignKey(name = "FK_movimiento_tipo"))
     private Tipos tipos;
 
+    @OneToMany(mappedBy = "movimientos", cascade = { CascadeType.ALL })
+    private List<Detalles> detalles;
+
     public Movimientos() {
     }
 
-    public Movimientos(Integer idMovimiento, Date fechaIngreso, Usuarios usuarios, Tipos tipos) {
+    public Movimientos(Integer idMovimiento, Date fechaIngreso, Usuarios usuarios, Tipos tipos, List<Detalles> detalles) {
         this.idMovimiento = idMovimiento;
         this.fechaIngreso = fechaIngreso;
         this.usuarios = usuarios;
         this.tipos = tipos;
+        this.detalles = detalles;
     }
 
     public Integer getIdMovimiento() {
@@ -72,5 +77,13 @@ public class Movimientos {
 
     public void setTipos(Tipos tipos) {
         this.tipos = tipos;
+    }
+
+    public List<Detalles> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<Detalles> detalles) {
+        this.detalles = detalles;
     }
 }

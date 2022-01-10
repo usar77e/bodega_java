@@ -1,15 +1,18 @@
 package com.bodega.backend.controller;
 
+import com.bodega.backend.dto.MovimientoDetallesDTO;
 import com.bodega.backend.model.Movimientos;
 import com.bodega.backend.service.MovimientosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,5 +50,30 @@ public class MovimientosController {
     @PostMapping
     public @ResponseBody Movimientos save(@RequestBody Movimientos movimientos){
         return movimientosService.save(movimientos);
+    }
+
+    @GetMapping("/dto")
+    public List<MovimientoDetallesDTO> findAllMovDTO(){
+        List<MovimientoDetallesDTO> dtos = new ArrayList<>();
+        List<Movimientos> movimientos = movimientosService.findAll();
+        movimientos.forEach(movimiento -> {
+            MovimientoDetallesDTO movDTO = new MovimientoDetallesDTO();
+            movDTO.setIdMovimiento(movimiento.getIdMovimiento());
+
+            movDTO.setTipos(movimiento.getTipos());
+
+            //HateOas
+            //usuario
+            WebMvcLinkBuilder linkTo1 = WebMvcLinkBuilder.linkTo(
+                    WebMvcLinkBuilder.methodOn(UsuariosController.class).findById(movimiento.getUsuarios().getIdUsuario()));
+            movDTO.add(linkTo1.withSelfRel());
+
+            //tipos
+            WebMvcLinkBuilder linkTo2 = WebMvcLinkBuilder.linkTo(
+                    WebMvcLinkBuilder.methodOn(UsuariosController.class).findById(movimiento.getTipos().getIdTipo()));
+            movDTO.add(linkTo2.withSelfRel());
+
+        });
+        return dtos;
     }
 }
