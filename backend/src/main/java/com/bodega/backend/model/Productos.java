@@ -36,29 +36,30 @@ public class Productos {
     @JoinColumn(name = "id_tproducto", nullable = false, foreignKey = @ForeignKey(name = "FK_productos_tipoproductos"))
     private TipoProductos tipoProductos;
 
-    @OneToMany(mappedBy = "productos")
-    private List<MarcaProducto> marcaProductos;
+    @ManyToOne
+    @JoinColumn(name = "id_marca", nullable = false, foreignKey = @ForeignKey(name = "FK_productos_marca"))
+    private Marcas marcas;
 
 
 
     public Productos() {
     }
 
-    public Productos(Integer idProducto, String nombre, String modelo, Integer cantidad, TipoProductos tipoProductos, List<MarcaProducto> marcaProductos) {
+    public Productos(Integer idProducto, String nombre, String modelo, Integer cantidad, TipoProductos tipoProductos, Marcas marcas) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.modelo = modelo;
         this.cantidad = cantidad;
         this.tipoProductos = tipoProductos;
-        this.marcaProductos = marcaProductos;
+        this.marcas = marcas;
     }
 
-    public List<MarcaProducto> getMarcaProductos() {
-        return marcaProductos;
+    public Marcas getMarcas() {
+        return marcas;
     }
 
-    public void setMarcaProductos(List<MarcaProducto> marcaProductos) {
-        this.marcaProductos = marcaProductos;
+    public void setMarcas(Marcas marcas) {
+        this.marcas = marcas;
     }
 
     public Integer getIdProducto() {

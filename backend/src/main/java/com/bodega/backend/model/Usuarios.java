@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 @Schema(description = "Listado de usuarios de sistema")
@@ -22,27 +23,30 @@ public class Usuarios {
     @Size(message = "nombre de usuario de la aplicacion")
     private String nombre;
 
+    @NotNull
+    @Email
+    @Schema(description = "Email de usuario de la aplicacion, maximo 100 caracteres, no acepta valores nulos")
+    @Column(name = "email", length = 50)
+    @Size(message = "email de usuario de la aplicacion")
+    private String correo;
+
+    @NotNull
+    @Schema(description = "password de usuario de la aplicacion, maximo 100 caracteres, no acepta valores nulos")
+    @Column(name = "password", length = 50)
+    @Size(message = "password de usuario de la aplicacion")
+    private String password;
+
+    @NotNull
+    @Schema(description = "estado del usuario, no acepta valores nulos")
+    @Column(name = "estado")
+    @Size(message = "estado de usuario de la aplicacion")
+    private Boolean estado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_perfil", nullable = false, foreignKey = @ForeignKey(name = "FK_usuario_perfiles"))
+    private Perfiles perfiles;
+
     public Usuarios() {
     }
 
-    public Usuarios(Integer idUsuario, String nombre) {
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-    }
-
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 }

@@ -10,7 +10,4 @@ import java.util.List;
 @Repository
 public interface ProductosRepository extends JpaRepository<Productos, Integer> {
 
-    @Query(value = "select mar.nombre, pr.nombre from Productos pr inner join MarcaProducto mp on pr.idProducto = mp.id.idProducto inner join Marcas mar on mp.id.idMarca = mar.idMarca")
-    List<Object[]> listarMarcasProductos();
-
 }

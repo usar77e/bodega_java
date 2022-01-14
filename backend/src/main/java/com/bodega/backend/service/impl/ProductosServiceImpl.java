@@ -68,13 +68,4 @@ public class ProductosServiceImpl implements ProductosService {
         return dtos;
     }
 
-    @Override
-    public List<Object[]> listarMarcasProductos() {
-        return productosRepository.listarMarcasProductos();
-    }
-
-    @Override
-    public Productos listarMarcaProducto(MarcaProductoDto dto) {
-        return null;
-    }
 }

@@ -1,6 +1,5 @@
 package com.bodega.backend.dto;
 
-import com.bodega.backend.model.MarcaProducto;
 import com.bodega.backend.model.Marcas;
 import com.bodega.backend.model.TipoProductos;
 import org.springframework.hateoas.RepresentationModel;
@@ -12,27 +11,17 @@ public class TipoProductoDTO extends RepresentationModel implements Serializable
     private String nombre;
     private Integer cantidad;
     private TipoProductos tipoProductos;
-    private MarcaProducto marcaProducto;
     private Marcas marcas;
 
     public TipoProductoDTO() {
     }
 
-    public TipoProductoDTO(Integer idProducto, String nombre, Integer cantidad, TipoProductos tipoProductos, MarcaProducto marcaProducto, Marcas marcas) {
+    public TipoProductoDTO(Integer idProducto, String nombre, Integer cantidad, TipoProductos tipoProductos , Marcas marcas) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.tipoProductos = tipoProductos;
-        this.marcaProducto = marcaProducto;
         this.marcas = marcas;
-    }
-
-    public MarcaProducto getMarcaProducto() {
-        return marcaProducto;
-    }
-
-    public void setMarcaProducto(MarcaProducto marcaProducto) {
-        this.marcaProducto = marcaProducto;
     }
 
     public Integer getIdProducto() {

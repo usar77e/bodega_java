@@ -10,7 +10,4 @@ public interface ProductosService extends ICRUD<Productos>{
 
     List<TipoProductoDTO> findAllDto();
 
-    List<Object[]> listarMarcasProductos();
-
-    Productos listarMarcaProducto(MarcaProductoDto marcaProductoDto);
 }
