@@ -50,4 +50,19 @@ public class UsuariosServiceImpl implements UsuariosService {
         usuariosRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Usuarios> findByName(String nombre) {
+        return usuariosRepository.findAllByNombre(nombre);
+    }
+
+    @Override
+    public List<Usuarios> findByEmail(String correo) {
+        return usuariosRepository.findAllByCorreo(correo);
+    }
+
+    @Override
+    public List<Usuarios> findByConditon(Boolean estado) {
+        return usuariosRepository.findAllByEstado(estado);
+    }
 }

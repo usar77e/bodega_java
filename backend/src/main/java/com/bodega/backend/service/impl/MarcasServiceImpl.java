@@ -50,4 +50,9 @@ public class MarcasServiceImpl implements MarcasService {
         marcasRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Marcas> findByName(String nombre) {
+        return marcasRepository.findAllByNombre(nombre);
+    }
 }

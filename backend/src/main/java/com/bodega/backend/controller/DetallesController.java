@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.Inet4Address;
 import java.util.List;
 
 @RestController
@@ -43,6 +44,14 @@ public class DetallesController {
         return detallesService.findById(id);
     }
 
+    @Operation(summary = "Obtener un listado de detalles por su cantidad",
+            description = "Necesita el numero de la cantidad que se busca",
+            method = "GET")
+    @GetMapping("/quantity/{cantidad}")
+    public List<Detalles> findByQuantity(@PathVariable("cantidad")Integer cantidad){
+        return detallesService.findByQuantity(cantidad);
+    }
+
     @Operation(summary = "Crear un nuevo detalle de movimiento",
             description = "Es necesario un id de movimiento de producto y una cantidad superior a cero",
             method = "POST")
@@ -50,4 +59,6 @@ public class DetallesController {
     public @ResponseBody Detalles save(@RequestBody Detalles detalles){
         return detallesService.save(detalles);
     }
+
+
 }

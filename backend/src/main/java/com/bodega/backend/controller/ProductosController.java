@@ -73,8 +73,29 @@ public class ProductosController {
         return dtos;
     }
 
-    @GetMapping("/marca-producto")
-    public List<Object[]> listarMarcasProductos() {
-        return productosService.listarMarcasProductos();
+    @Operation(summary = "Obtener una producto por el nombre",
+            description = "Necesita el nombre del producto",
+            method = "GET")
+    @GetMapping("/name/{name}")
+    public List<Productos> findByName(@PathVariable("name") String name){
+        return productosService.findByNombre(name);
     }
+
+    @Operation(summary = "Obtener una producto por el modelo",
+            description = "Necesita el modelo del producto",
+            method = "GET")
+    @GetMapping("/model/{model}")
+    public List<Productos> findByModel(@PathVariable("model") String model){
+
+        return productosService.findByModel(model);
+    }
+
+    @Operation(summary = "Obtener un listado de productos por su cantidad",
+            description = "Necesita el numero de la cantidad que se busca",
+            method = "GET")
+    @GetMapping("/quantity/{cantidad}")
+    public List<Productos> findByQuantity(@PathVariable("cantidad") Integer cantidad){
+        return productosService.findByQuantity(cantidad);
+    }
+
 }

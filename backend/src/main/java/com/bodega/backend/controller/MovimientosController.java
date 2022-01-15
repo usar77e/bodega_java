@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -42,6 +43,14 @@ public class MovimientosController {
     @GetMapping("/{id}")
     public Movimientos findById(@PathVariable("id") Integer id){
         return movimientosService.findById(id);
+    }
+
+    @Operation(summary = "Obtener un listado de operaciones por su fecha",
+            description = "Necesita la fecha en la cual se busca",
+            method = "GET")
+    @GetMapping("date/{fecha}")
+    public List<Movimientos> findByDate(@PathVariable("fecha") Date fecha){
+        return movimientosService.findAllByDate(fecha);
     }
 
     @Operation(summary = "Crear un nuevo Ingreso o egreso",

@@ -50,4 +50,9 @@ public class DetallesServiceImpl implements DetallesService {
         detallesRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Detalles> findByQuantity(Integer cantidad) {
+        return detallesRepository.findAllByCantidad(cantidad);
+    }
 }

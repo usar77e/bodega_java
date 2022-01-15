@@ -50,4 +50,14 @@ public class PerfilesServiceImpl implements PerfilesService {
         perfilesRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Perfiles> findByName(String nombre) {
+        return perfilesRepository.findAllByNombre(nombre);
+    }
+
+    @Override
+    public List<Perfiles> findByCondition(Boolean estado) {
+        return perfilesRepository.findAllByEstado(estado);
+    }
 }

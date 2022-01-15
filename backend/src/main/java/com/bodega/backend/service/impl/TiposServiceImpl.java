@@ -50,4 +50,9 @@ public class TiposServiceImpl implements TiposService {
         tiposRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Tipos> findByName(String nombre) {
+        return tiposRepository.findAllByNombre(nombre);
+    }
 }

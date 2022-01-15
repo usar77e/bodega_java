@@ -41,6 +41,14 @@ public class TiposController {
         return tiposService.findById(id);
     }
 
+    @Operation(summary = "Obtener un tipo de operacion por nombre",
+            description = "Necesita el nombre del tipo de operacion",
+            method = "GET")
+    @GetMapping("/name/{name}")
+    public List<Tipos> findByName(@PathVariable("name") String name){
+        return tiposService.findByName(name);
+    }
+
     @Operation(summary = "Crear un nuevo tipo de producto",
             description = "necesaria cadena de texto ",
             method = "POST")

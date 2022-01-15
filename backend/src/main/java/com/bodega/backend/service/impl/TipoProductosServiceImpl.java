@@ -52,4 +52,9 @@ public class TipoProductosServiceImpl implements TipoProductoService {
         tipoProductosRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<TipoProductos> findByName(String nombre) {
+        return tipoProductosRepository.findAllByNombre(nombre);
+    }
 }

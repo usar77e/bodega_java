@@ -39,6 +39,22 @@ public class PerfilesController {
     @GetMapping("/{id}")
     public Perfiles findById(@PathVariable("id") Integer id){ return perfilesService.findById(id);}
 
+    @Operation(summary = "Obtener un perfil por su nombre",
+            description = "Necesita el nombre del perfil",
+            method = "GET")
+    @GetMapping("/name/{name}")
+    public List<Perfiles> findByName(@PathVariable("name") String name){
+        return perfilesService.findByName(name);
+    }
+
+    @Operation(summary = "Obtener un listado de perfiles por su estado",
+            description = "Necesita estado a buscar",
+            method = "GET")
+    @GetMapping("condition/{estado}")
+    public List<Perfiles> findByCondition(@PathVariable("estado") Boolean estado){
+        return perfilesService.findByCondition(estado);
+    }
+
     @Operation(summary = "Crear un nuevo perfil",
             description = "Necesita una cadena de texto con el nombre",
             method = "POST")

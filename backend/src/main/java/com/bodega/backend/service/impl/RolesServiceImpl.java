@@ -49,4 +49,14 @@ public class RolesServiceImpl implements RolesService {
         rolesRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Roles> findByName(String nombre) {
+        return rolesRepository.findAllByNombre(nombre);
+    }
+
+    @Override
+    public List<Roles> findByCondition(Boolean estado) {
+        return rolesRepository.findAllByEstado(estado);
+    }
 }

@@ -41,6 +41,14 @@ public class TipoProductosController {
         return tipoProductoService.findById(id);
     }
 
+    @Operation(summary = "Obtener un tipo de producto por nombre",
+            description = "Necesita el nombre del tipo de producto",
+            method = "GET")
+    @GetMapping("/name/{name}")
+    public List<TipoProductos> findByName(@PathVariable("name") String name){
+        return tipoProductoService.findByName(name);
+    }
+
     @Operation(summary = "Crear un nuevo Tipo de Producto",
             description = "necesita cadena de texto",
             method = "POST")

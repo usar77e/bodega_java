@@ -41,6 +41,30 @@ public class UsuariosController {
         return usuariosService.findById(id);
     }
 
+    @Operation(summary = "Obtener un usuario por nombre",
+            description = "Necesita el nombre del usuario",
+            method = "GET")
+    @GetMapping("name/{name}")
+    public List<Usuarios> findByName(@PathVariable("name") String name){
+        return usuariosService.findByName(name);
+    }
+
+    @Operation(summary = "Obtener un usuario por su email",
+            description = "Necesita el email del usuario",
+            method = "GET")
+    @GetMapping("/email/{correo}")
+    public List<Usuarios> findByEmail(@PathVariable("correo") String correo){
+        return usuariosService.findByEmail(correo);
+    }
+
+    @Operation(summary = "Obtener un listado de usuario por su estado",
+            description = "Necesita estado a buscar",
+            method = "GET")
+    @GetMapping("/condition/{estado}")
+    public List<Usuarios> findByCondition(@PathVariable("estado") Boolean estado){
+        return usuariosService.findByConditon(estado);
+    }
+
     @Operation(summary = "Crear un nuevo usuario",
             description = "necesaria una cadena de texto",
             method = "POST")

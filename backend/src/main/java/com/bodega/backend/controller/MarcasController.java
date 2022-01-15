@@ -43,6 +43,14 @@ public class MarcasController {
         return marcasService.findById(id);
     }
 
+    @Operation(summary = "Obtener una marca por nombre",
+            description = "Necesita el nombre de la marca",
+            method = "GET")
+    @GetMapping("/name/{name}")
+    public List<Marcas> findByName(@PathVariable("name") String name){
+        return marcasService.findByName(name);
+    }
+
     @Operation(summary = "Crear una nueva marca",
             description = "Necesita una cadena de texto con el nombre",
             method = "POST")
@@ -50,4 +58,5 @@ public class MarcasController {
     public @ResponseBody Marcas save(@RequestBody Marcas marcas){
         return marcasService.save(marcas);
     }
+
 }
