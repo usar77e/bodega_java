@@ -1,5 +1,6 @@
 package com.bodega.backend.service.impl;
 
+import com.bodega.backend.dto.ProductosDTO;
 import com.bodega.backend.dto.TipoProductoDTO;
 import com.bodega.backend.exception.ModelNoFoundException;
 import com.bodega.backend.model.Productos;
@@ -80,5 +81,20 @@ public class ProductosServiceImpl implements ProductosService {
     @Override
     public List<Productos> findByQuantity(Integer cantidad) {
         return productosRepository.findAllByCantidad(cantidad);
+    }
+
+    public List<ProductosDTO> findAllProductosDTO() {
+        List<ProductosDTO> pdtos = new ArrayList<>();
+        List<Productos> productos = productosRepository.findAll();
+        productos.forEach(producto -> {
+            ProductosDTO productosDTO = new ProductosDTO();
+            productosDTO.setIdProducto(producto.getIdProducto());
+            productosDTO.setNombreProducto(producto.getNombre());
+            productosDTO.setNombreMarca(producto.getMarcas().getNombre());
+            productosDTO.setNombreTipoProducto(producto.getTipoProductos().getNombre());
+            productosDTO.setCantidadProducto(producto.getCantidad());
+            pdtos.add(productosDTO);
+        });
+        return pdtos;
     }
 }

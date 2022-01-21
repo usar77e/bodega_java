@@ -12,8 +12,10 @@ public class UsuarioRolesDTO extends RepresentationModel implements Serializable
     private String nombre;
     private String correo;
     private Perfiles perfiles;
+    private String nombrePerfil;
     private RolesPerfiles rolesPerfiles;
     private Roles roles;
+    private String nombreRoles;
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -61,5 +63,21 @@ public class UsuarioRolesDTO extends RepresentationModel implements Serializable
 
     public void setRoles(Roles roles) {
         this.roles = roles;
+    }
+
+    public String getNombrePerfil() {
+        return nombrePerfil;
+    }
+
+    public void setNombrePerfil(String nombrePerfil) {
+        this.nombrePerfil = nombrePerfil;
+    }
+
+    public String getNombreRoles() {
+        return nombreRoles;
+    }
+
+    public void setNombreRoles(String nombreRoles) {
+        this.nombreRoles = nombreRoles;
     }
 }

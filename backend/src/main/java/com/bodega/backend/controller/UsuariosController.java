@@ -1,5 +1,6 @@
 package com.bodega.backend.controller;
 
+import com.bodega.backend.dto.UsuarioRolesDTO;
 import com.bodega.backend.model.Usuarios;
 import com.bodega.backend.service.UsuariosService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -71,5 +72,10 @@ public class UsuariosController {
     @PostMapping
     public @ResponseBody Usuarios save(@RequestBody Usuarios usuarios){
         return usuariosService.save(usuarios);
+    }
+
+    @GetMapping("/dto/listado")
+    public List<UsuarioRolesDTO> findAllUsuarios() {
+        return usuariosService.findAllUsuarios();
     }
 }

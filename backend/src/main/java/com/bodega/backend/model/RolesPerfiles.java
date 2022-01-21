@@ -18,6 +18,15 @@ public class RolesPerfiles {
     @JoinColumn(name = "id_rol")
     Roles roles;
 
+    public RolesPerfiles() {
+    }
+
+    public RolesPerfiles(RolesPerfilesKey id, Perfiles perfiles, Roles roles) {
+        this.id = id;
+        this.perfiles = perfiles;
+        this.roles = roles;
+    }
+
     public RolesPerfilesKey getId() {
         return id;
     }

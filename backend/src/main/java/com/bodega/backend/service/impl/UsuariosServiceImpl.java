@@ -1,5 +1,6 @@
 package com.bodega.backend.service.impl;
 
+import com.bodega.backend.dto.UsuarioRolesDTO;
 import com.bodega.backend.exception.ModelNoFoundException;
 import com.bodega.backend.model.Usuarios;
 import com.bodega.backend.repository.UsuariosRepository;
@@ -7,6 +8,7 @@ import com.bodega.backend.service.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +66,21 @@ public class UsuariosServiceImpl implements UsuariosService {
     @Override
     public List<Usuarios> findByConditon(Boolean estado) {
         return usuariosRepository.findAllByEstado(estado);
+    }
+
+    @Override
+    public List<UsuarioRolesDTO> findAllUsuarios() {
+        List<UsuarioRolesDTO> udtos = new ArrayList<>();
+        List<Usuarios> usuarios = usuariosRepository.findAll();
+        usuarios.forEach(usuario -> {
+            UsuarioRolesDTO usuarioRolesDTO = new UsuarioRolesDTO();
+            usuarioRolesDTO.setIdUsuario(usuario.getIdUsuario());
+            usuarioRolesDTO.setNombrePerfil(usuario.getPerfiles().getNombre());
+            usuarioRolesDTO.setNombreRoles(usuario.getPerfiles().getRolesPerfiles().get(
+                    usuario.getPerfiles().getIdPerfil()
+            ).getRoles().getNombre());
+            udtos.add(usuarioRolesDTO);
+        });
+        return null;
     }
 }

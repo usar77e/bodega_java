@@ -1,5 +1,6 @@
 package com.bodega.backend.controller;
 
+import com.bodega.backend.dto.ProductosDTO;
 import com.bodega.backend.dto.TipoProductoDTO;
 import com.bodega.backend.model.Productos;
 import com.bodega.backend.service.ProductosService;
@@ -86,7 +87,6 @@ public class ProductosController {
             method = "GET")
     @GetMapping("/model/{model}")
     public List<Productos> findByModel(@PathVariable("model") String model){
-
         return productosService.findByModel(model);
     }
 
@@ -96,6 +96,31 @@ public class ProductosController {
     @GetMapping("/quantity/{cantidad}")
     public List<Productos> findByQuantity(@PathVariable("cantidad") Integer cantidad){
         return productosService.findByQuantity(cantidad);
+    }
+
+    @GetMapping("/dto/listado")
+    public List<ProductosDTO> findAllProductosDTO(){
+        List<ProductosDTO> pdtos = new ArrayList<>();
+        List<Productos> productos = productosService.findAll();
+        productos.forEach(producto -> {
+            ProductosDTO productosDTO = new ProductosDTO();
+            productosDTO.setIdProducto(producto.getIdProducto());
+            productosDTO.setNombreProducto(producto.getNombre());
+            productosDTO.setCantidadProducto(producto.getCantidad());
+
+            //marca de producto
+            WebMvcLinkBuilder linkMarca = WebMvcLinkBuilder.linkTo(
+                    WebMvcLinkBuilder.methodOn(MarcasController.class).findById(producto.getMarcas().getIdMarca()));
+            productosDTO.add(linkMarca.withSelfRel());
+
+            //tipo de producto
+            WebMvcLinkBuilder linkToTipoProducto = WebMvcLinkBuilder.linkTo(
+                    WebMvcLinkBuilder.methodOn(TipoProductosController.class).findById(producto.getTipoProductos().getIdTproducto()));
+            productosDTO.add(linkToTipoProducto.withSelfRel());
+
+            pdtos.add(productosDTO);
+        });
+        return pdtos;
     }
 
 }

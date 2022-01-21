@@ -1,5 +1,6 @@
 package com.bodega.backend.service;
 
+import com.bodega.backend.dto.ProductosDTO;
 import com.bodega.backend.dto.TipoProductoDTO;
 import com.bodega.backend.model.Productos;
 
@@ -14,5 +15,7 @@ public interface ProductosService extends ICRUD<Productos>{
     List<Productos> findByModel(String modelo);
 
     List<Productos> findByQuantity(Integer cantidad);
+
+    List<ProductosDTO> findAllProductosDTO();
 
 }
