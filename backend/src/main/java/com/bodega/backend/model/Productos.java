@@ -40,18 +40,28 @@ public class Productos {
     @JoinColumn(name = "id_marca", nullable = false, foreignKey = @ForeignKey(name = "FK_productos_marca"))
     private Marcas marcas;
 
-
+    @OneToMany(mappedBy = "productos", cascade = { CascadeType.ALL })
+    private List<Detalles> detalles;
 
     public Productos() {
     }
 
-    public Productos(Integer idProducto, String nombre, String modelo, Integer cantidad, TipoProductos tipoProductos, Marcas marcas) {
+    public Productos(Integer idProducto, String nombre, String modelo, Integer cantidad, TipoProductos tipoProductos, Marcas marcas, List<Detalles> detalles) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.modelo = modelo;
         this.cantidad = cantidad;
         this.tipoProductos = tipoProductos;
         this.marcas = marcas;
+        this.detalles = detalles;
+    }
+
+    public List<Detalles> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<Detalles> detalles) {
+        this.detalles = detalles;
     }
 
     public Marcas getMarcas() {

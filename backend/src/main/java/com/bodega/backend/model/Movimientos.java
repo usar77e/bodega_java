@@ -86,4 +86,6 @@ public class Movimientos {
     public void setDetalles(List<Detalles> detalles) {
         this.detalles = detalles;
     }
+
+
 }

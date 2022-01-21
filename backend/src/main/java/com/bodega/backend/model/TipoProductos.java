@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Schema(description = "Listado clasificacion de productos existentes")
 @Entity
@@ -20,12 +21,16 @@ public class TipoProductos {
     @Column(unique = true, name = "nombre", length = 70)
     private String nombre;
 
+    @OneToMany(mappedBy = "tipoProductos", cascade = { CascadeType.ALL })
+    private List<Productos> productos;
+
     public TipoProductos() {
     }
 
-    public TipoProductos(Integer idTproducto, String nombre) {
+    public TipoProductos(Integer idTproducto, String nombre, List<Productos> productos) {
         this.idTproducto = idTproducto;
         this.nombre = nombre;
+        this.productos = productos;
     }
 
     public Integer getIdTproducto() {
@@ -42,5 +47,13 @@ public class TipoProductos {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Productos> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Productos> productos) {
+        this.productos = productos;
     }
 }

@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Schema(description = "Listado de usuarios de sistema")
 @Entity
@@ -46,16 +47,28 @@ public class Usuarios {
     @JoinColumn(name = "id_perfil", nullable = false, foreignKey = @ForeignKey(name = "FK_usuario_perfiles"))
     private Perfiles perfiles;
 
+    @OneToMany(mappedBy = "usuarios", cascade = { CascadeType.ALL })
+    private List<Movimientos> movimientos;
+
     public Usuarios() {
     }
 
-    public Usuarios(Integer idUsuario, String nombre, String correo, String password, Boolean estado, Perfiles perfiles) {
+    public Usuarios(Integer idUsuario, String nombre, String correo, String password, Boolean estado, Perfiles perfiles, List<Movimientos> movimientos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.estado = estado;
         this.perfiles = perfiles;
+        this.movimientos = movimientos;
+    }
+
+    public List<Movimientos> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Movimientos> movimientos) {
+        this.movimientos = movimientos;
     }
 
     public Integer getIdUsuario() {

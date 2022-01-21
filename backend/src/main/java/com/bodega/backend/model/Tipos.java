@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Schema(description = "Tipo de operacion de la tabla movimiento")
 @Entity
@@ -20,12 +21,16 @@ public class Tipos {
     @Column(unique = true, name = "nombre", length = 20)
     private String nombre;
 
+    @OneToMany(mappedBy = "tipos", cascade = { CascadeType.ALL })
+    private List<Movimientos> movimientos;
+
     public Tipos() {
     }
 
-    public Tipos(Integer idTipo, String nombre) {
+    public Tipos(Integer idTipo, String nombre, List<Movimientos> movimientos) {
         this.idTipo = idTipo;
         this.nombre = nombre;
+        this.movimientos = movimientos;
     }
 
     public Integer getIdTipo() {
@@ -42,5 +47,13 @@ public class Tipos {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Movimientos> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Movimientos> movimientos) {
+        this.movimientos = movimientos;
     }
 }

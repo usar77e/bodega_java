@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Schema(description = "Listado de perfiles del sistema")
 @Entity
@@ -29,13 +30,36 @@ public class Perfiles {
     @Size(message = "estado de usuario de la aplicacion")
     private Boolean estado;
 
+    @OneToMany(mappedBy = "perfiles", cascade = { CascadeType.ALL })
+    private List<Usuarios> usuarios;
+
+    @OneToMany(mappedBy = "perfiles", cascade = { CascadeType.ALL })
+    private List<RolesPerfiles> rolesPerfiles;
+
     public Perfiles() {
     }
 
-    public Perfiles(Integer idPerfil, String nombre, Boolean estado) {
+    public Perfiles(Integer idPerfil, String nombre, Boolean estado, List<Usuarios> usuarios) {
         this.idPerfil = idPerfil;
         this.nombre = nombre;
         this.estado = estado;
+        this.usuarios = usuarios;
+    }
+
+    public List<RolesPerfiles> getRolesPerfiles() {
+        return rolesPerfiles;
+    }
+
+    public void setRolesPerfiles(List<RolesPerfiles> rolesPerfiles) {
+        this.rolesPerfiles = rolesPerfiles;
+    }
+
+    public List<Usuarios> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuarios> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public Integer getIdPerfil() {

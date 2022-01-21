@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Schema(description = "Listado de los roles del sistema")
 @Entity
@@ -28,13 +29,25 @@ public class Roles {
     @Size(message = "estado de usuario de la roles")
     private Boolean estado;
 
+    @OneToMany(mappedBy = "roles", cascade = { CascadeType.ALL })
+    private List<RolesPerfiles> rolesPerfiles;
+
     public Roles() {
     }
 
-    public Roles(Integer idRol, String nombre, Boolean estado) {
+    public Roles(Integer idRol, String nombre, Boolean estado, List<RolesPerfiles> rolesPerfiles) {
         this.idRol = idRol;
         this.nombre = nombre;
         this.estado = estado;
+        this.rolesPerfiles = rolesPerfiles;
+    }
+
+    public List<RolesPerfiles> getRolesPerfiles() {
+        return rolesPerfiles;
+    }
+
+    public void setRolesPerfiles(List<RolesPerfiles> rolesPerfiles) {
+        this.rolesPerfiles = rolesPerfiles;
     }
 
     public Integer getIdRol() {
