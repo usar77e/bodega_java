@@ -20,17 +20,17 @@ public class Tipos {
     @Schema(description = "Nombre de tipo de movimiento, caracteres maximos 20, no acepta valores nulos ni repetidos")
     @Column(unique = true, name = "nombre", length = 20)
     private String nombre;
-
-    @OneToMany(mappedBy = "tipos", cascade = { CascadeType.ALL })
+/*
+    @OneToMany(mappedBy = "tipos", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Movimientos> movimientos;
-
+*/
     public Tipos() {
     }
 
     public Tipos(Integer idTipo, String nombre, List<Movimientos> movimientos) {
         this.idTipo = idTipo;
         this.nombre = nombre;
-        this.movimientos = movimientos;
+  //      this.movimientos = movimientos;
     }
 
     public Integer getIdTipo() {
@@ -48,12 +48,12 @@ public class Tipos {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/*
     public List<Movimientos> getMovimientos() {
         return movimientos;
     }
 
     public void setMovimientos(List<Movimientos> movimientos) {
         this.movimientos = movimientos;
-    }
+    }*/
 }

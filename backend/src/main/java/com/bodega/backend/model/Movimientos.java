@@ -33,9 +33,9 @@ public class Movimientos {
     @JoinColumn(name = "id_tipo", nullable = false, foreignKey = @ForeignKey(name = "FK_movimiento_tipo"))
     private Tipos tipos;
 
-    @OneToMany(mappedBy = "movimientos", cascade = { CascadeType.ALL })
+/*    @OneToMany(mappedBy = "movimientos", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Detalles> detalles;
-
+*/
     public Movimientos() {
     }
 
@@ -44,7 +44,7 @@ public class Movimientos {
         this.fechaIngreso = fechaIngreso;
         this.usuarios = usuarios;
         this.tipos = tipos;
-        this.detalles = detalles;
+    //    this.detalles = detalles;
     }
 
     public Integer getIdMovimiento() {
@@ -79,13 +79,13 @@ public class Movimientos {
         this.tipos = tipos;
     }
 
-    public List<Detalles> getDetalles() {
+/*    public List<Detalles> getDetalles() {
         return detalles;
     }
 
     public void setDetalles(List<Detalles> detalles) {
         this.detalles = detalles;
     }
-
+*/
 
 }

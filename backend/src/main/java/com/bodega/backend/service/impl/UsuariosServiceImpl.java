@@ -76,9 +76,9 @@ public class UsuariosServiceImpl implements UsuariosService {
             UsuarioRolesDTO usuarioRolesDTO = new UsuarioRolesDTO();
             usuarioRolesDTO.setIdUsuario(usuario.getIdUsuario());
             usuarioRolesDTO.setNombrePerfil(usuario.getPerfiles().getNombre());
-            usuarioRolesDTO.setNombreRoles(usuario.getPerfiles().getRolesPerfiles().get(
-                    usuario.getPerfiles().getIdPerfil()
-            ).getRoles().getNombre());
+          //  usuarioRolesDTO.setNombreRoles(usuario.getPerfiles().getRolesPerfiles().get(
+            //        usuario.getPerfiles().getIdPerfil()
+           // ).getRoles().getNombre());
             udtos.add(usuarioRolesDTO);
         });
         return null;

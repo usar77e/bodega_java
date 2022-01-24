@@ -39,10 +39,10 @@ public class Productos {
     @ManyToOne
     @JoinColumn(name = "id_marca", nullable = false, foreignKey = @ForeignKey(name = "FK_productos_marca"))
     private Marcas marcas;
-
-    @OneToMany(mappedBy = "productos", cascade = { CascadeType.ALL })
+/*
+    @OneToMany(mappedBy = "productos", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Detalles> detalles;
-
+*/
     public Productos() {
     }
 
@@ -53,17 +53,17 @@ public class Productos {
         this.cantidad = cantidad;
         this.tipoProductos = tipoProductos;
         this.marcas = marcas;
-        this.detalles = detalles;
+  //      this.detalles = detalles;
     }
 
-    public List<Detalles> getDetalles() {
+/*    public List<Detalles> getDetalles() {
         return detalles;
     }
 
     public void setDetalles(List<Detalles> detalles) {
         this.detalles = detalles;
     }
-
+*/
     public Marcas getMarcas() {
         return marcas;
     }

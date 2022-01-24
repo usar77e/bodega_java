@@ -20,17 +20,17 @@ public class Marcas {
     @Schema(description = "Nombre de la marca del producto, maximo 70 caracteres, no acepta valores nulos")
     @Column(unique = true, name = "nombre", length = 70)
     private String nombre;
-
-    @OneToMany(mappedBy = "marcas", cascade = { CascadeType.ALL })
+/*
+    @OneToMany(mappedBy = "marcas", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Productos> productos;
-
+*/
     public Marcas() {
     }
 
     public Marcas(Integer idMarca, String nombre, List<Productos> productos) {
         this.idMarca = idMarca;
         this.nombre = nombre;
-        this.productos = productos;
+       // this.productos = productos;
     }
 
     public Integer getIdMarca() {
@@ -49,11 +49,11 @@ public class Marcas {
         this.nombre = nombre;
     }
 
-    public List<Productos> getProductos() {
+/*    public List<Productos> getProductos() {
         return productos;
     }
 
     public void setProductos(List<Productos> productos) {
         this.productos = productos;
-    }
+    }*/
 }

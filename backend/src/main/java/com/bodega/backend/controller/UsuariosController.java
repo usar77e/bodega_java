@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/usuarios")
 public class UsuariosController {
     @Autowired
     private UsuariosService usuariosService;
@@ -74,7 +74,7 @@ public class UsuariosController {
         return usuariosService.save(usuarios);
     }
 
-    @GetMapping("/dto/listado")
+    @GetMapping("/dto-listado")
     public List<UsuarioRolesDTO> findAllUsuarios() {
         return usuariosService.findAllUsuarios();
     }

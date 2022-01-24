@@ -46,10 +46,10 @@ public class Usuarios {
     @ManyToOne
     @JoinColumn(name = "id_perfil", nullable = false, foreignKey = @ForeignKey(name = "FK_usuario_perfiles"))
     private Perfiles perfiles;
-
-    @OneToMany(mappedBy = "usuarios", cascade = { CascadeType.ALL })
+/*
+    @OneToMany(mappedBy = "usuarios", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Movimientos> movimientos;
-
+*/
     public Usuarios() {
     }
 
@@ -60,9 +60,9 @@ public class Usuarios {
         this.password = password;
         this.estado = estado;
         this.perfiles = perfiles;
-        this.movimientos = movimientos;
+  //      this.movimientos = movimientos;
     }
-
+/*
     public List<Movimientos> getMovimientos() {
         return movimientos;
     }
@@ -70,7 +70,7 @@ public class Usuarios {
     public void setMovimientos(List<Movimientos> movimientos) {
         this.movimientos = movimientos;
     }
-
+*/
     public Integer getIdUsuario() {
         return idUsuario;
     }

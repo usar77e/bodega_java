@@ -29,9 +29,9 @@ public class Roles {
     @Size(message = "estado de usuario de la roles")
     private Boolean estado;
 
-    @OneToMany(mappedBy = "roles", cascade = { CascadeType.ALL })
+/*    @OneToMany(mappedBy = "roles", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<RolesPerfiles> rolesPerfiles;
-
+*/
     public Roles() {
     }
 
@@ -39,9 +39,9 @@ public class Roles {
         this.idRol = idRol;
         this.nombre = nombre;
         this.estado = estado;
-        this.rolesPerfiles = rolesPerfiles;
+ //       this.rolesPerfiles = rolesPerfiles;
     }
-
+/*
     public List<RolesPerfiles> getRolesPerfiles() {
         return rolesPerfiles;
     }
@@ -49,7 +49,7 @@ public class Roles {
     public void setRolesPerfiles(List<RolesPerfiles> rolesPerfiles) {
         this.rolesPerfiles = rolesPerfiles;
     }
-
+*/
     public Integer getIdRol() {
         return idRol;
     }

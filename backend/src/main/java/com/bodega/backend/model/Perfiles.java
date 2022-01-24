@@ -30,12 +30,12 @@ public class Perfiles {
     @Size(message = "estado de usuario de la aplicacion")
     private Boolean estado;
 
-    @OneToMany(mappedBy = "perfiles", cascade = { CascadeType.ALL })
+/*    @OneToMany(mappedBy = "perfiles", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Usuarios> usuarios;
 
-    @OneToMany(mappedBy = "perfiles", cascade = { CascadeType.ALL })
+    @OneToMany(mappedBy = "perfiles", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<RolesPerfiles> rolesPerfiles;
-
+*/
     public Perfiles() {
     }
 
@@ -43,10 +43,10 @@ public class Perfiles {
         this.idPerfil = idPerfil;
         this.nombre = nombre;
         this.estado = estado;
-        this.usuarios = usuarios;
+  //      this.usuarios = usuarios;
     }
 
-    public List<RolesPerfiles> getRolesPerfiles() {
+/*    public List<RolesPerfiles> getRolesPerfiles() {
         return rolesPerfiles;
     }
 
@@ -60,7 +60,7 @@ public class Perfiles {
 
     public void setUsuarios(List<Usuarios> usuarios) {
         this.usuarios = usuarios;
-    }
+    }*/
 
     public Integer getIdPerfil() {
         return idPerfil;

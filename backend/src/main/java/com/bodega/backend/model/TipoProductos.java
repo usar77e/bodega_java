@@ -21,16 +21,16 @@ public class TipoProductos {
     @Column(unique = true, name = "nombre", length = 70)
     private String nombre;
 
-    @OneToMany(mappedBy = "tipoProductos", cascade = { CascadeType.ALL })
+/*    @OneToMany(mappedBy = "tipoProductos", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private List<Productos> productos;
-
+*/
     public TipoProductos() {
     }
 
     public TipoProductos(Integer idTproducto, String nombre, List<Productos> productos) {
         this.idTproducto = idTproducto;
         this.nombre = nombre;
-        this.productos = productos;
+  //      this.productos = productos;
     }
 
     public Integer getIdTproducto() {
@@ -48,12 +48,12 @@ public class TipoProductos {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/*
     public List<Productos> getProductos() {
         return productos;
     }
 
     public void setProductos(List<Productos> productos) {
         this.productos = productos;
-    }
+    }*/
 }
